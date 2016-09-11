@@ -3,16 +3,20 @@
 const notams = require('./index')
 
 describe('notams', () => {
-  it('should accept a single ICAO', (done) => {
+  it('should fetch NOTAMs for a single ICAO', (done) => {
     notams('KFDC').then(() => done())
   })
 
-  it('should accept a comma separated list of ICAOs', (done) => {
+  it('should fetch NOTAMs for a comma separated list of ICAOs', (done) => {
     notams(['KFDC,KZBW']).then(() => done())
   })
 
-  it('should accept an array of ICAOs', (done) => {
+  it('should fetch NOTAMs for an array of ICAOs', (done) => {
     notams(['KFDC', 'KZBW']).then(() => done())
+  })
+
+  it('should expose the fetch method', (done) => {
+    notams.fetch('KFDC').then(() => done())
   })
 
   it('should fetch TFRs', (done) => {
@@ -29,5 +33,9 @@ describe('notams', () => {
 
   it('should fetch Special Notices', (done) => {
     notams.fetchAllSpecialNotices().then(() => done())
+  })
+
+  it('should fetch all NOTAMs', (done) => {
+    notams.fetchAll().then(() => done())
   })
 })

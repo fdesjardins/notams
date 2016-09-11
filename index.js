@@ -8,7 +8,7 @@ const notams = module.exports = (icaos, options = {}) => {
 }
 
 // Main fetching method; accepts one or more ICAO codes
-notams.fetch = (icaos, options) => {
+notams.fetch = (icaos, options = {}) => {
   const formatType = options.format || 'ICAO'
 
   if (Array.isArray(icaos)) {
@@ -38,6 +38,34 @@ notams.fetchAllCARF = (options = {}) => {
 notams.fetchAllSpecialNotices = (options = {}) => {
   const formatType = options.format || 'ICAO'
   return fetchAll('ALLSPECIALNOTICES', formatType)
+}
+
+// Fetch all NOTAMs
+notams.fetchAll = (options = {}) => {
+  return Promise.join(
+    notams.fetchAllTFR(options),
+    notams.fetchAllGPS(options),
+    notams.fetchAllCARF(options),
+    notams.fetchAllSpecialNotices(options)
+  ).then(([tfrs, gps, carfs, specialNotices]) => {
+    // Reconstruct/flatten the entire listing
+    const index = {}
+    ;[tfrs, gps, carfs, specialNotices].map(notams => {
+      notams.map(notam => {
+        if (index[notam.icao] === undefined) {
+          index[notam.icao] = []
+        }
+        index[notam.icao].push(...notam.notams)
+      })
+    })
+    // Reformat the output
+    return Object.keys(index).map(icao => {
+      return {
+        icao: icao,
+        notams: index[icao]
+      }
+    })
+  })
 }
 
 // Helper method for the above fetchAll methods
@@ -74,17 +102,17 @@ const parse = (html) => {
 
       let $next = $(el).parent().next()
       while (true) {
-        // stop if we hit the next ICAO section
+        // Stop if we hit the next ICAO section
         const titleText = $next.find('#resultsTitleLeft').html()
         if (titleText !== null) {
           break
         }
-        // stop at the end of the reports
+        // Stop at the end of the reports
         const summaryText = $next.find('#alertFont').html()
         if (summaryText !== null) {
           break
         }
-        // extract the current NOTAM text
+        // Extract the current NOTAM text
         const notamText = $next.find('pre').text()
         if (notamText !== '') {
           notams.push(notamText)
