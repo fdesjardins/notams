@@ -24,10 +24,10 @@ notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
 
 ### `notams(icaos, options)`
 ### `notams.fetch(icaos, options)`
-### `notams.fetchAllTFR(icaos, options)`
-### `notams.fetchAllGPS(icaos, options)`
-### `notams.fetchAllCARF(icaos, options)`
-### `notams.fetchAllSpecialNotices(icaos, options)`
+### `notams.fetchAllTFR(options)`
+### `notams.fetchAllGPS(options)`
+### `notams.fetchAllCARF(options)`
+### `notams.fetchAllSpecialNotices(options)`
 
 #### `icaos`
 

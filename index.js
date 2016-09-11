@@ -2,7 +2,7 @@ const Promise = require('bluebird')
 const request = Promise.promisify(require('request'))
 const cheerio = require('cheerio')
 
-// Provide a short cut to the fetch method
+// Provide a shortcut to the fetch method
 const notams = module.exports = (icaos, options = {}) => {
   return notams.fetch(icaos, options)
 }
