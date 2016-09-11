@@ -1,5 +1,5 @@
 const notams = require('./')
 
-notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
-  console.log(results)
+notams.fetchAllTFR({ format: 'ICAO' }).then(results => {
+  console.log(JSON.stringify(results, null, 2))
 })

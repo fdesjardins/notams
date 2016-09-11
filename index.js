@@ -44,6 +44,22 @@ notams.fetchAllSpecialNotices = (options = {}) => {
 const fetchAll = (queryType, formatType) => {
   return request(`https://pilotweb.nas.faa.gov/PilotWeb/noticesAction.do?queryType=${queryType}&reportType=RAW&formatType=${formatType}`)
     .then(res => parse(res.body))
+    .then(results => results.map(r => {
+      return {
+        icao: r.icao,
+        notams: r.notams.map(n => {
+          return {
+            text: n,
+            type: {
+              'ALLTFR': 'TFR',
+              'ALLGPS': 'GPS',
+              'ALLCARF': 'CARF',
+              'ALLSPECIALNOTICES': 'Special Notice'
+            }[queryType]
+          }
+        })
+      }
+    }))
 }
 
 // Parse the response HTML from https://pilotweb.nas.faa.gov
