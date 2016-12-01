@@ -1,5 +1,5 @@
 const notams = require('./')
 
-notams.fetchAll().then(results => {
+notams.fetch('KRAP').then(results => {
   console.log(JSON.stringify(results, null, 2))
 })
