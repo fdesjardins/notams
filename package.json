@@ -28,7 +28,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.4.6",
+    "bluebird": "^3.4.7",
     "cheerio": "^0.22.0",
     "request": "^2.79.0"
   },
