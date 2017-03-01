@@ -1,6 +1,6 @@
 {
   "name": "notams",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Fetch NOTAMs (Notices to Airmen)",
   "main": "index.js",
   "repository": "fdesjardins/notams",
