@@ -28,9 +28,9 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.0",
     "bluebird": "^3.5.0",
-    "cheerio": "^0.22.0",
-    "request": "^2.81.0"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
