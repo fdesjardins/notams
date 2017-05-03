@@ -34,13 +34,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.13.0",
+    "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
-    "eslint-config-standard": "^7.1.0",
+    "eslint-config-standard": "^10.2.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.1.1",
-    "mocha": "^3.2.0",
-    "nyc": "^10.2.0"
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.0"
   },
   "nyc": {
     "reporter": [
