@@ -30,7 +30,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
-    "cheerio": "^0.22.0"
+    "cheerio": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
