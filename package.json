@@ -4,13 +4,16 @@
   "description": "Fetch NOTAMs (Notices to Airmen)",
   "main": "index.js",
   "repository": "fdesjardins/notams",
+  "publishConfig": {
+    "registry": "http://18.220.27.71:4873/"
+  },
   "author": {
     "name": "Forrest Desjardins",
     "email": "desjardinsfg@gmail.com",
     "url": "github.com/fdesjardins"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=7"
   },
   "scripts": {
     "test": "eslint *.js && nyc ./node_modules/.bin/mocha --opts mocha.opts test.js"
