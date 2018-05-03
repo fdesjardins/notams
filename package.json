@@ -1,6 +1,6 @@
 {
   "name": "notams",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Fetch NOTAMs (Notices to Airmen)",
   "main": "index.js",
   "repository": "fdesjardins/notams",
@@ -13,10 +13,11 @@
     "node": ">=7"
   },
   "scripts": {
-    "test":
-      "eslint *.js && nyc ./node_modules/.bin/mocha --opts mocha.opts test.js"
+    "test": "eslint *.js && nyc ./node_modules/.bin/mocha --opts mocha.opts test.js"
   },
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "NOTAM",
     "Notices to Airmen",
@@ -44,6 +45,9 @@
     "nyc": "^11.7.1"
   },
   "nyc": {
-    "reporter": ["lcov", "text"]
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   }
 }
