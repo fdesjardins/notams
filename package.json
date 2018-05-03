@@ -1,12 +1,9 @@
 {
   "name": "notams",
-  "version": "1.1.15",
+  "version": "1.1.8",
   "description": "Fetch NOTAMs (Notices to Airmen)",
   "main": "index.js",
   "repository": "fdesjardins/notams",
-  "publishConfig": {
-    "registry": "http://18.220.27.71:4873/"
-  },
   "author": {
     "name": "Forrest Desjardins",
     "email": "desjardinsfg@gmail.com",
@@ -16,11 +13,10 @@
     "node": ">=7"
   },
   "scripts": {
-    "test": "eslint *.js && nyc ./node_modules/.bin/mocha --opts mocha.opts test.js"
+    "test":
+      "eslint *.js && nyc ./node_modules/.bin/mocha --opts mocha.opts test.js"
   },
-  "files": [
-    "index.js"
-  ],
+  "files": ["index.js"],
   "keywords": [
     "NOTAM",
     "Notices to Airmen",
@@ -31,26 +27,23 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.8.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^4.0.1",
-    "nyc": "^11.2.1"
+    "coveralls": "^3.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1"
   },
   "nyc": {
-    "reporter": [
-      "lcov",
-      "text"
-    ]
+    "reporter": ["lcov", "text"]
   }
 }
