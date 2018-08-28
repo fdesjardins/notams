@@ -1,6 +1,8 @@
 const Promise = require('bluebird')
-const axios = require('axios')
+const superagent = require('superagent')
 const cheerio = require('cheerio')
+
+const PILOTWEB_BASE_URL = 'https://pilotweb.nas.faa.gov/PilotWeb'
 
 // Provide a shortcut to the fetch method
 const notams = (module.exports = (icaos, options = {}) => {
@@ -15,11 +17,16 @@ notams.fetch = (icaos, options = {}) => {
     icaos = icaos.join(',')
   }
 
-  return axios
-    .get(
-      `https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=${formatType}&retrieveLocId=${icaos}&actionType=notamRetrievalByICAOs`
-    )
-    .then(res => parse(res.data))
+  return superagent
+    .get(`${PILOTWEB_BASE_URL}/notamRetrievalByICAOAction.do`)
+    .query({
+      reportType: 'RAW',
+      method: 'displayByICAOs',
+      actionType: 'notamRetrievalByICAOs',
+      retrieveLocId: icaos,
+      formatType
+    })
+    .then(res => parse(res.text))
 }
 
 // Fetch all TFRs (Temporary Flight Restrictions)
@@ -73,11 +80,14 @@ notams.fetchAll = (options = {}) => {
 
 // Helper method for the above fetchAll methods
 const fetchAll = (queryType, formatType) => {
-  return axios
-    .get(
-      `https://pilotweb.nas.faa.gov/PilotWeb/noticesAction.do?queryType=${queryType}&reportType=RAW&formatType=${formatType}`
-    )
-    .then(res => parse(res.data))
+  return superagent
+    .get(`${PILOTWEB_BASE_URL}/noticesAction.do`)
+    .query({
+      reportType: 'RAW',
+      queryType,
+      formatType
+    })
+    .then(res => parse(res.text))
     .then(results =>
       results.map(r => {
         return {
@@ -113,6 +123,7 @@ const parse = html => {
       let $next = $(el)
         .parent()
         .next()
+
       while (true) {
         // Stop if we hit the next ICAO section
         const titleText = $next.find('#resultsTitleLeft').html()
