@@ -1,7 +1,7 @@
 {
   "name": "notams",
   "description": "Fetch NOTAMs (Notices to Airmen) from https://pilotweb.nas.faa.gov",
-  "version": "1.1.13",
+  "version": "1.2.0",
   "author": {
     "name": "Forrest Desjardins",
     "email": "desjardinsfg@gmail.com",
