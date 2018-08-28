@@ -3,9 +3,9 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 
 // Provide a shortcut to the fetch method
-const notams = module.exports = (icaos, options = {}) => {
+const notams = (module.exports = (icaos, options = {}) => {
   return notams.fetch(icaos, options)
-}
+})
 
 // Main fetching method; accepts one or more ICAO codes
 notams.fetch = (icaos, options = {}) => {
@@ -15,7 +15,10 @@ notams.fetch = (icaos, options = {}) => {
     icaos = icaos.join(',')
   }
 
-  return axios.get(`https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=${formatType}&retrieveLocId=${icaos}&actionType=notamRetrievalByICAOs`)
+  return axios
+    .get(
+      `https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=${formatType}&retrieveLocId=${icaos}&actionType=notamRetrievalByICAOs`
+    )
     .then(res => parse(res.data))
 }
 
@@ -47,10 +50,10 @@ notams.fetchAll = (options = {}) => {
     notams.fetchAllGPS(options),
     notams.fetchAllCARF(options),
     notams.fetchAllSpecialNotices(options)
-  ).then(([tfrs, gps, carfs, specialNotices]) => {
+  ).then(([ tfrs, gps, carfs, specialNotices ]) => {
     // Reconstruct/flatten the entire listing
     const index = {}
-    ;[tfrs, gps, carfs, specialNotices].map(notams => {
+    ;[ tfrs, gps, carfs, specialNotices ].map(notams => {
       notams.map(notam => {
         if (index[notam.icao] === undefined) {
           index[notam.icao] = []
@@ -70,37 +73,46 @@ notams.fetchAll = (options = {}) => {
 
 // Helper method for the above fetchAll methods
 const fetchAll = (queryType, formatType) => {
-  return axios.get(`https://pilotweb.nas.faa.gov/PilotWeb/noticesAction.do?queryType=${queryType}&reportType=RAW&formatType=${formatType}`)
+  return axios
+    .get(
+      `https://pilotweb.nas.faa.gov/PilotWeb/noticesAction.do?queryType=${queryType}&reportType=RAW&formatType=${formatType}`
+    )
     .then(res => parse(res.data))
-    .then(results => results.map(r => {
-      return {
-        icao: r.icao,
-        notams: r.notams.map(n => {
-          return {
-            text: n,
-            type: {
-              'ALLTFR': 'TFR',
-              'ALLGPS': 'GPS',
-              'ALLCARF': 'CARF',
-              'ALLSPECIALNOTICES': 'Special Notice'
-            }[queryType]
-          }
-        })
-      }
-    }))
+    .then(results =>
+      results.map(r => {
+        return {
+          icao: r.icao,
+          notams: r.notams.map(n => {
+            return {
+              text: n,
+              type: {
+                ALLTFR: 'TFR',
+                ALLGPS: 'GPS',
+                ALLCARF: 'CARF',
+                ALLSPECIALNOTICES: 'Special Notice'
+              }[queryType]
+            }
+          })
+        }
+      })
+    )
 }
 
 // Parse the response HTML from https://pilotweb.nas.faa.gov
-const parse = (html) => {
+const parse = html => {
   const $ = cheerio.load(html)
   return $('div[id="resultsHomeLeft"]')
     .find('#resultsTitleLeft')
     .toArray()
     .map(el => {
-      const title = $(el).find('a').attr('name')
+      const title = $(el)
+        .find('a')
+        .attr('name')
       const notams = []
 
-      let $next = $(el).parent().next()
+      let $next = $(el)
+        .parent()
+        .next()
       while (true) {
         // Stop if we hit the next ICAO section
         const titleText = $next.find('#resultsTitleLeft').html()
