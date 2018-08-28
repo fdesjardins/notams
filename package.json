@@ -1,6 +1,6 @@
 {
   "name": "notams",
-  "description": "Fetch NOTAMs (Notices to Airmen)",
+  "description": "Fetch NOTAMs (Notices to Airmen) from https://pilotweb.nas.faa.gov",
   "version": "1.1.13",
   "author": {
     "name": "Forrest Desjardins",
@@ -52,11 +52,17 @@
   ],
   "keywords": [
     "NOTAM",
-    "Notices to Airmen",
+    "Notice to Airmen",
     "api",
     "aviation",
     "data",
-    "notices"
+    "notices",
+    "weather",
+    "tfr",
+    "gps",
+    "carf",
+    "notices",
+    "pilot"
   ],
   "license": "MIT",
   "main": "index.js",

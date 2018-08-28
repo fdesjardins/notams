@@ -4,7 +4,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![Coverage][coveralls-image]][coveralls-url]
 
-Fetch NOTAMs (Notices to Airmen) using Node.js
+Fetch NOTAMs (Notices to Airmen) from https://pilotweb.nas.faa.gov using Node.js
 
 ## Installation
 
@@ -46,10 +46,15 @@ notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
 ## API
 
 ### `notams(icaos, options)`
+
 ### `notams.fetch(icaos, options)`
+
 ### `notams.fetchAllTFR(options)`
+
 ### `notams.fetchAllGPS(options)`
+
 ### `notams.fetchAllCARF(options)`
+
 ### `notams.fetchAllSpecialNotices(options)`
 
 #### `icaos`
@@ -57,6 +62,7 @@ notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
 Type: `string` or `array`
 
 One of the following:
+
 - a single ICAO code
 - a comma-separated list of ICAO codes
 - an array of ICAO codes
@@ -70,8 +76,13 @@ Type: `object`
 Type: `string`
 
 Valid values:
+
 - `DOMESTIC`
 - `ICAO`
+
+## Contributing
+
+Contributions welcome!
 
 ## License
 
