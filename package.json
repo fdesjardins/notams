@@ -8,16 +8,16 @@
     "url": "github.com/fdesjardins"
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
+    "bluebird": "^3.5.2",
     "cheerio": "^1.0.0-rc.2",
-    "superagent": "^3.8.3"
+    "superagent": "^4.0.0-beta.5"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
-    "standard": "^11.0.1"
+    "standard": "^12.0.1"
   },
   "engines": {
     "node": ">=7"
