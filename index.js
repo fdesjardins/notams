@@ -84,7 +84,7 @@ const fetchAll = async (queryType, formatType) => {
 
   const parsed = parse(response.text)
 
-  parsed.map(r => ({
+  return parsed.map(r => ({
     icao: r.icao,
     notams: r.notams.map(n => {
       return {

@@ -1,41 +1,36 @@
 /* global describe, it */
 
+const assert = require('assert')
 const notams = require('./index')
 
 describe('notams', () => {
-  it('should fetch NOTAMs for a single ICAO', done => {
-    notams('KFDC').then(() => done())
+  it('should fetch NOTAMs for a single ICAO', async () => {
+    const res = await notams('KFDC')
+    assert(res.length === 1)
   })
 
-  it('should fetch NOTAMs for a comma separated list of ICAOs', done => {
-    notams([ 'KFDC,KZBW' ]).then(() => done())
+  it('should fetch NOTAMs for a comma separated list of ICAOs', async () => {
+    const res = await notams([ 'KFDC,KZBW' ])
+    assert(res.length === 2)
   })
 
-  it('should fetch NOTAMs for an array of ICAOs', done => {
-    notams([ 'KFDC', 'KZBW' ]).then(() => done())
+  it('should fetch NOTAMs for an array of ICAOs', async () => {
+    const res = await notams([ 'KFDC', 'KZBW' ])
+    assert(res.length === 2)
   })
 
-  it('should expose the fetch method', done => {
-    notams.fetch('KFDC').then(() => done())
+  it('should expose the fetch method', async () => {
+    const res = await notams.fetch('KFDC')
+    assert(res.length === 1)
   })
 
-  it('should fetch TFRs', done => {
-    notams.fetchAllTFR().then(() => done())
+  it('should fetch NOTAMs by type', async () => {
+    const res = await notams.fetchAllByType('ALLTFR')
+    assert(res.length > 0)
   })
 
-  it('should fetch GPS NOTAMs', done => {
-    notams.fetchAllGPS().then(() => done())
-  })
-
-  it('should fetch CARF NOTAMs', done => {
-    notams.fetchAllCARF().then(() => done())
-  })
-
-  it('should fetch Special Notices', done => {
-    notams.fetchAllSpecialNotices().then(() => done())
-  })
-
-  it('should fetch all NOTAMs', done => {
-    notams.fetchAll().then(() => done())
+  it('should fetch all NOTAMs', async () => {
+    const res = await notams.fetchAll('KFDC')
+    assert(res.length > 2)
   })
 })
