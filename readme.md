@@ -1,10 +1,11 @@
 # notams
 
-[![Build Status][travis-image]][travis-url]
-[![NPM Version][npm-image]][npm-url]
-[![Coverage][coveralls-image]][coveralls-url]
-
 Fetch NOTAMs (Notices to Airmen) from https://pilotweb.nas.faa.gov using Node.js
+
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage][coveralls-image]][coveralls-url]
+[![Maintainability][code-climate-image]][code-climate-url]
 
 ## Installation
 
@@ -94,3 +95,5 @@ MIT © [Forrest Desjardins](https://github.com/fdesjardins)
 [travis-image]: https://img.shields.io/travis/fdesjardins/notams.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/fdesjardins/notams
 [coveralls-image]: https://img.shields.io/coveralls/fdesjardins/notams.svg?style=flat
+[code-climate-url]: https://codeclimate.com/github/fdesjardins/notams/maintainability
+[code-climate-image]: https://api.codeclimate.com/v1/badges/b20811df22b96f9dbdb1/maintainability
