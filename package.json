@@ -8,7 +8,6 @@
     "url": "github.com/fdesjardins"
   },
   "dependencies": {
-    "bluebird": "^3.5.3",
     "cheerio": "^1.0.0-rc.2",
     "superagent": "^4.0.0"
   },
