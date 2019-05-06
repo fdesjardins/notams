@@ -16,8 +16,8 @@ $ npm install --save notams
 ## Usage
 
 ```js
-notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
-  console.log(results)
+notams.fetch([ 'PADK', 'PADU' ], { format: 'DOMESTIC' }).then(results => {
+  console.log(JSON.stringify(results, null, 2))
 })
 ```
 
@@ -28,17 +28,19 @@ notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
   {
     "icao": "PADK",
     "notams": [
-      "!ADK 04/002 ADK NAV DME OUT OF SERVICE 1704032100-1704032359\n",
-      "!ADK 04/001 ADK SVC AUTOMATED WX BCST SYSTEM OUT OF SERVICE 1704031600-1704032000\n",
-      "!ADK 03/004 ADK NAV ILS RWY 23 LOC OUT OF SERVICE 1703170944-1704212359EST\n",
-      "!ADK 03/001 ADK NAV NDB OUT OF SERVICE 1503030545-PERM\n",
-      "!FDC 6/2510 ADK SPECIAL ADAK, ADAK ISLAND, AK.\nILS OR LOC/DME RWY 23, AMDT 2...\nS-ILS 23 NA. S-LOC 23 MDA 480/HAT 463 ALL CATS.\n1611031724-1706151724EST\n"
+      "!ADK 04/008 ADK NAV DME NOT MNT 1904170731-1905081400EST\n",
+      "!ADK 04/007 ADK NAV NDB NOT MNT 1904130039-1905101500EST\n",
+      "!FDC 9/2641 ADK SPECIAL ADAK, Adak Island, AK.\nILS OR LOC/DME RWY 23, AMDT 2...\nS-ILS DA NA.\n1901091550-2101091548EST\n"
     ]
   },
   {
     "icao": "PADU",
     "notams": [
-      "!FDC 7/9121 DUT SPECIAL UNALASKA, UNALASKA, AK.\nNDB/DME OR GPS - D, ORIG ...\nNDB/DME OR GPS - C, AMDT 2 ...\nADD FIVE DEGREES TO ALL PUBLISHED HEADINGS, COURSES AND BEARINGS.\n1701301906-1709111905EST\n"
+      "!DUT 05/018 DUT TWY ALL FICON WET OBS AT 1905051946. 1905051946-1905061946\n",
+      "!DUT 05/017 DUT APRON ALL FICON WET OBS AT 1905051946. 1905051946-1905061946\n",
+      "!DUT 05/016 DUT RWY 31 FICON 5/5/5 100 PCT WET OBS AT 1905051945. 1905051945-1905061945\n",
+      "!DUT 05/015 DUT RWY 13 FICON 5/5/5 100 PCT WET OBS AT 1905051945. 1905051945-1905061945\n",
+      "!DUT 04/123 DUT SVC AUTOMATED WX BCST SYSTEM OUT OF SERVICE 1904251718-1905111500EST\n"
     ]
   }
 ]
@@ -50,19 +52,11 @@ notams(['PADK', 'PADU'], { format: 'DOMESTIC' }).then(results => {
 
 ### `notams.fetch(icaos, options)`
 
-### `notams.fetchAllTFR(options)`
-
-### `notams.fetchAllGPS(options)`
-
-### `notams.fetchAllCARF(options)`
-
-### `notams.fetchAllSpecialNotices(options)`
-
 #### `icaos`
 
 Type: `string` or `array`
 
-One of the following:
+Valid values:
 
 - a single ICAO code
 - a comma-separated list of ICAO codes
@@ -72,7 +66,34 @@ One of the following:
 
 Type: `object`
 
-##### `format`
+```js
+{ format: 'ICAO' }
+```
+
+##### `options.format`
+
+Type: `string`
+
+Valid values:
+
+- `DOMESTIC`
+- `ICAO`
+
+### `notams.fetchAllByType(type, format)`
+
+#### `type`
+
+Type: `string`
+
+Valid values:
+
+- `ALLTFR`
+- `ALLGPS`
+- `ALLCARF`
+- `ALLSPECIALNOTICES`
+
+
+#### `format`
 
 Type: `string`
 
