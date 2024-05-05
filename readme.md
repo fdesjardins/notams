@@ -1,8 +1,8 @@
-# notams (deprecated by bureaucrats)
+# DEPRECATED: notams
 
 Fetch NOTAMs (Notices to Airmen) from https://pilotweb.nas.faa.gov using Node.js
 
-⚠️ This project is deprecated. The FAA has unfortunately prevented the ability to scrape NOTAMs and has threatened legal action to those who circumvent it. If you find this annoying (you should) please send the FAA lots of complaints. Their safeguards should be fairly easy to get around because the FAA is often technologically inept. However, you'll need to modify this package or figure that out yourself, and you will accept the risk yourself. My apologies ☹️ 
+⚠️ This project is deprecated. The FAA has unfortunately prevented the ability to easily retrieve notams.
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
